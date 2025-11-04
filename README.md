@@ -11,17 +11,46 @@ A comprehensive Cursor AI configuration for elite frontend development, featurin
 This is a **portable Cursor AI configuration** that can be used in any new frontend project. It contains:
 
 - **Agent Rules** (`.cursorrules`) - Comprehensive coding standards and architectural principles
+  - ✅ **Auto-detected by Cursor** - Works immediately after copying
 - **Context Documentation** (`.context/`) - Reference docs for AI context retention
+  - ✅ **Auto-detected by Cursor** - Automatically indexed for AI context
 - **Automation Templates** - GitHub Actions and GitLab CI configurations
+  - ⚙️ Manual setup required - Copy to `.github/` or project root
 - **Project Templates** - Reusable config files for Vite, TypeScript, ESLint, Storybook
+  - ⚙️ Manual setup required - Copy from `templates/` and customize
+
+**Key Point**: Cursor automatically detects and uses `.cursorrules` and `.context/` files when you open a project. No configuration needed!
 
 ## Quick Start
 
+### Cursor Auto-Detection
+
+**Cursor automatically detects**:
+- ✅ `.cursorrules` - AI agent configuration (works immediately)
+- ✅ `.context/` - Documentation for AI context (auto-indexed)
+- ✅ `.cursor/` - Workspace settings and additional rules (auto-detected)
+- ✅ `.cursorignore` - Files to exclude from AI indexing (auto-applied)
+
+**No configuration needed** - Just copy these files and Cursor will use them!
+
+For detailed information about what Cursor automatically detects vs. what requires manual setup, see [SETUP.md](SETUP.md#cursor-auto-detection-vs-manual-setup).
+
 ### 1. Copy to Your Project
 
+**Minimal (Cursor AI only)**:
 ```bash
-# Copy the entire .cursor/ directory to your project root
-cp -r .cursor .cursorrules .context templates <your-project-root>/
+# Copy only Cursor-specific files
+cp .cursorrules <your-project-root>/
+cp .cursorignore <your-project-root>/
+cp -r .context <your-project-root>/
+cp -r .cursor <your-project-root>/
+```
+
+**Complete setup**:
+```bash
+# Copy all configuration files
+cp .cursorrules .cursorignore <your-project-root>/
+cp -r .cursor .context templates <your-project-root>/
 
 # Copy CI/CD configurations
 cp -r .github <your-project-root>/
@@ -31,6 +60,8 @@ cp .gitlab-ci.yml <your-project-root>/
 ### 2. Install Dependencies
 
 ```bash
+cd <your-project-root>
+cp templates/package.json package.json
 npm install
 ```
 
@@ -39,6 +70,8 @@ npm install
 ```bash
 npm run dev
 ```
+
+**Note**: See [SETUP.md](SETUP.md) for complete installation instructions and verification steps.
 
 ## What You Get
 
@@ -179,13 +212,20 @@ WCAG 2.2 Level AA compliance:
 ```
 .cursor/
 ├── .cursorrules                 # Main AI agent rules
-├── .context/
+├── .cursorignore                # Files to exclude from AI indexing
+├── .cursor/                     # Workspace settings
+│   ├── README.md                # Cursor workspace documentation
+│   ├── settings.json            # Workspace IDE settings
+│   └── rules/                   # Additional rule files
+│       ├── README.md
+│       └── project-specific.md
+├── .context/                    # Documentation for AI context
 │   ├── architecture.md
 │   ├── design-system.md
 │   ├── workflows.md
 │   ├── conventions.md
 │   └── stack.md
-├── templates/
+├── templates/                   # Project templates
 │   ├── vite.config.ts
 │   ├── tsconfig.json
 │   ├── eslint.config.js
@@ -210,10 +250,32 @@ WCAG 2.2 Level AA compliance:
 
 Once copied to your project, Cursor AI will:
 
-1. **Read** `.cursorrules` for coding standards
-2. **Reference** `.context/` documentation for architectural decisions
+1. **Automatically read** `.cursorrules` for coding standards
+2. **Automatically reference** `.context/` documentation for architectural decisions
 3. **Suggest** using templates when creating new files
 4. **Enforce** quality gates (types, tests, security, a11y)
+
+### Verifying Cursor Configuration
+
+To verify Cursor is using your configuration:
+
+1. **Test `.cursorrules`**:
+   - Ask: "What TypeScript standards do you follow?"
+   - Should reference strict mode, no `any` types, etc.
+
+2. **Test `.context/`**:
+   - Ask: "How does Module Federation work in our architecture?"
+   - Should reference `architecture.md` content
+
+3. **Test component patterns**:
+   - Ask: "How should I create a Button component?"
+   - Should reference design system patterns from `design-system.md`
+
+If Cursor doesn't reference these files, verify:
+- `.cursorrules` exists in project root
+- `.context/` directory exists in project root
+- Files are not gitignored (they should be committed)
+- Restart Cursor IDE if needed
 
 ### Example Workflow
 

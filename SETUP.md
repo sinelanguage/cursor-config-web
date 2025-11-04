@@ -1,5 +1,150 @@
 # Elite Frontend Cursor AI Setup - Installation Guide
 
+## Cursor Auto-Detection vs Manual Setup
+
+### ✅ What Cursor Automatically Detects
+
+Cursor AI automatically recognizes and uses these files **without any manual configuration**:
+
+#### 1. `.cursorrules` File
+- **Location**: Project root
+- **Auto-detected**: ✅ Yes
+- **Purpose**: Configures Cursor AI agent behavior and coding standards
+- **How it works**: Cursor reads this file automatically when you open the project
+- **No action needed**: Just copy the file to your project root
+
+#### 2. `.context/` Directory
+- **Location**: Project root (`.context/`)
+- **Auto-detected**: ✅ Yes
+- **Purpose**: Provides reference documentation for AI context retention
+- **How it works**: Cursor automatically indexes these files for AI context
+- **Files included**:
+  - `architecture.md` - System design patterns
+  - `design-system.md` - Component patterns and design tokens
+  - `workflows.md` - Git workflows and CI/CD
+  - `conventions.md` - Code conventions and file organization
+  - `stack.md` - Technology stack documentation
+- **No action needed**: Copy the entire `.context/` directory to your project root
+
+#### 3. `.cursor/` Directory
+- **Location**: Project root (`.cursor/`)
+- **Auto-detected**: ✅ Yes
+- **Purpose**: Workspace settings and additional rule files
+- **How it works**: Cursor automatically reads workspace settings and rule files
+- **Files included**:
+  - `settings.json` - Workspace IDE settings (VS Code compatible)
+  - `rules/` - Additional rule files that complement `.cursorrules`
+- **No action needed**: Copy the entire `.cursor/` directory to your project root
+
+#### 4. `.cursorignore` File
+- **Location**: Project root (`.cursorignore`)
+- **Auto-detected**: ✅ Yes
+- **Purpose**: Controls which files Cursor indexes for AI context
+- **How it works**: Uses `.gitignore` syntax to exclude files from indexing
+- **No action needed**: Copy the file to your project root
+
+#### Verification
+
+To verify Cursor is using these files:
+
+1. **Check `.cursorrules`**:
+   - Open Cursor in your project
+   - Ask Cursor: "What coding standards do you follow?"
+   - It should reference the rules from `.cursorrules`
+
+2. **Check `.context/`**:
+   - Ask Cursor: "What is our Module Federation architecture?"
+   - It should reference `architecture.md` from `.context/`
+
+### ⚙️ What Requires Manual Setup
+
+These components need to be manually configured or installed:
+
+#### 1. Project Dependencies
+- **Status**: ❌ Manual setup required
+- **Action**: Run `npm install` or copy `templates/package.json` and install
+- **Why**: Cursor doesn't install dependencies automatically
+
+#### 2. Build Configuration Files
+- **Status**: ❌ Manual setup required
+- **Files**: `vite.config.ts`, `tsconfig.json`, `eslint.config.js`
+- **Action**: Copy from `templates/` directory and customize
+- **Why**: These are project-specific configurations
+
+#### 3. Git Hooks (Husky)
+- **Status**: ❌ Manual setup required
+- **Action**: Run `npx husky install` and configure hooks
+- **Why**: Git hooks need to be initialized in your repository
+
+#### 4. CI/CD Workflows
+- **Status**: ❌ Manual setup required
+- **Action**: Copy `.github/workflows/` or `.gitlab-ci.yml` to your repo
+- **Why**: CI/CD is repository-specific and needs to be configured
+
+#### 5. Environment Variables
+- **Status**: ❌ Manual setup required
+- **Action**: Create `.env.development` and `.env.production` files
+- **Why**: Environment-specific configuration
+
+#### 6. IDE Settings (Optional)
+- **Status**: ❌ Manual setup required
+- **Action**: Copy VS Code settings if you want IDE-specific configuration
+- **Why**: IDE settings are user/repository specific
+
+### Quick Reference Table
+
+| Component | Auto-Detected | Manual Setup Required | Notes |
+|-----------|--------------|----------------------|-------|
+| `.cursorrules` | ✅ Yes | ❌ No | Works immediately after copy |
+| `.context/` directory | ✅ Yes | ❌ No | Automatically indexed |
+| `.cursor/` directory | ✅ Yes | ❌ No | Workspace settings and rules |
+| `.cursorignore` | ✅ Yes | ❌ No | Controls AI indexing |
+| Project dependencies | ❌ No | ✅ Yes | Run `npm install` |
+| Build configs (Vite, TS) | ❌ No | ✅ Yes | Copy from `templates/` |
+| Git hooks | ❌ No | ✅ Yes | Initialize Husky |
+| CI/CD workflows | ❌ No | ✅ Yes | Copy to `.github/` or root |
+| Environment variables | ❌ No | ✅ Yes | Create `.env.*` files |
+| IDE settings | ❌ No | ✅ Optional | VS Code settings |
+
+### Minimal Setup (Cursor Only)
+
+If you **only** want Cursor AI configuration:
+
+```bash
+# Copy Cursor-specific files only
+cp .cursorrules .cursorignore <your-project-root>/
+cp -r .context .cursor <your-project-root>/
+```
+
+That's it! Cursor will automatically use these files.
+
+### Full Setup (Complete Project)
+
+For a complete project setup with all features:
+
+```bash
+# Copy all configuration files
+cp .cursorrules .cursorignore <your-project-root>/
+cp -r .cursor .context templates <your-project-root>/
+cp -r .github <your-project-root>/
+
+# Install dependencies
+cd <your-project-root>
+cp templates/package.json package.json
+npm install
+
+# Copy build configs
+cp templates/vite.config.ts vite.config.ts
+cp templates/tsconfig.json tsconfig.json
+cp templates/eslint.config.js eslint.config.js
+
+# Initialize git hooks
+npx husky install
+
+# Create environment files
+# (see detailed steps below)
+```
+
 ## Quick Install
 
 ### Option 1: Copy All Files to New Project
@@ -369,6 +514,42 @@ npm run dev
    ```
 
 ## Troubleshooting
+
+### Cursor Not Detecting Configuration
+
+If Cursor doesn't seem to be using your configuration:
+
+1. **Verify file locations**:
+   ```bash
+   # Check files exist in project root
+   ls -la .cursorrules
+   ls -la .context/
+   ```
+
+2. **Check file permissions**:
+   - Files should be readable
+   - Ensure they're not symlinks to inaccessible locations
+
+3. **Verify not gitignored**:
+   ```bash
+   # Check .gitignore doesn't exclude these files
+   cat .gitignore | grep -E "cursorrules|\.context"
+   ```
+   - These files **should be committed** to git
+   - Cursor works best when files are in the repository
+
+4. **Restart Cursor IDE**:
+   - Close and reopen Cursor
+   - Sometimes Cursor needs a restart to detect new files
+
+5. **Check Cursor settings**:
+   - Ensure Cursor has access to workspace files
+   - Check if any workspace settings override defaults
+
+6. **Test with direct questions**:
+   - Ask: "What rules are in .cursorrules?"
+   - Ask: "What's in the architecture.md file?"
+   - If Cursor doesn't reference these, it's not detecting them
 
 ### Module Resolution Errors
 
