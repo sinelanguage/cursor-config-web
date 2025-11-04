@@ -1,3 +1,10 @@
+/**
+ * Storybook Configuration Template
+ * This is a template file for Storybook v8 with React + Vite.
+ * Copy this to your project's .storybook/main.ts and adjust paths as needed.
+ * @see https://storybook.js.org/docs/react/configure/overview
+ */
+// @ts-nocheck - Template file, module availability depends on project dependencies
 import type { StorybookConfig } from '@storybook/react-vite'
 
 const config: StorybookConfig = {

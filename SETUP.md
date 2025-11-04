@@ -242,7 +242,7 @@ cp templates/eslint.config.js eslint.config.js
 # Storybook config
 mkdir -p .storybook
 cp templates/.storybook/main.ts .storybook/main.ts
-cp templates/.storybook/preview.ts .storybook/preview.ts
+cp templates/.storybook/preview.tsx .storybook/preview.tsx
 ```
 
 ### 4. Set Up Environment Variables

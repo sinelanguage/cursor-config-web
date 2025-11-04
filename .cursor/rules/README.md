@@ -13,11 +13,15 @@ While `.cursorrules` contains the main AI agent configuration, you can create ad
 
 ## File Format
 
+Files in this directory should:
+
 - Use `.md` or `.mdc` extension
-- Markdown format
-- Each file should focus on a specific domain or concern
+- Use Markdown format
+- Focus on a specific domain or concern
 
 ## Example Files
+
+Example rule files you might create:
 
 - `project-specific.md` - Project-specific rules and conventions
 - `api-patterns.md` - API integration patterns

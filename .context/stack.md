@@ -109,7 +109,7 @@ Scripts:
 
 ### Base Component Library
 
-**Tailwind CSS**
+#### Tailwind CSS
 
 - Version: `^3.4.0`
 - Utility-first CSS framework
@@ -120,14 +120,14 @@ Scripts:
 
 ### Design System Components
 
-**Storybook**
+#### Storybook
 
 - Version: `^8.0.0`
 - Component documentation
 - Visual testing
 - Interaction testing
 
-**Chromatic**
+#### Chromatic
 
 - Visual regression testing
 - Automatic diffs
@@ -135,7 +135,7 @@ Scripts:
 
 ### Headless UI Primitives
 
-**Radix UI**
+#### Radix UI
 
 - Version: `^1.0.0` (latest)
 - Unstyled, accessible component primitives
@@ -179,7 +179,7 @@ npm install @radix-ui/react-toast
 
 ### Component Library (Copy-Paste Approach)
 
-**ShadCN UI**
+#### ShadCN UI
 
 - **Not installed as a package** - Components are copied into your codebase
 - Built on top of Radix UI primitives
@@ -277,7 +277,7 @@ npm install -D @playwright/test
 
 ### Test Coverage
 
-**@vitest/coverage-v8**
+#### @vitest/coverage-v8
 
 - Istanbul instrumentation
 - Coverage thresholds
@@ -496,7 +496,7 @@ Recommended:
 
 Use `.nvmrc`:
 
-```
+```text
 20
 ```
 

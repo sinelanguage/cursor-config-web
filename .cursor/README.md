@@ -128,11 +128,15 @@ Edit `.cursorignore` to exclude:
 
 ## Related Files
 
+Related configuration files:
+
 - `.cursorrules` - Main AI agent rules (project root)
 - `.context/` - Documentation for AI context (project root)
 - `.vscode/settings.json` - VS Code settings (if needed)
 
 ## See Also
+
+Additional resources:
 
 - [Cursor Documentation](https://docs.cursor.com/)
 - [SETUP.md](../SETUP.md) - Setup instructions

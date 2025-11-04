@@ -1,3 +1,10 @@
+/**
+ * Storybook Preview Configuration Template
+ * This is a template file for configuring Storybook v8 preview settings.
+ * Copy this to your project's .storybook/preview.ts and adjust as needed.
+ * @see https://storybook.js.org/docs/react/configure/overview
+ */
+// @ts-nocheck - Template file, module availability depends on project dependencies
 import type { Preview } from '@storybook/react'
 import '../src/styles/global.css'
 
