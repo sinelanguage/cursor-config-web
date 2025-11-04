@@ -116,7 +116,7 @@ type Heading = `h${1 | 2 | 3 | 4 | 5 | 6}`
 
 ### Event Handling
 
-- Use synthetic events properly (SyntheticEvent<T>)
+- Use synthetic events properly (`SyntheticEvent<T>`)
 - Destructure event properties needed, don't pass entire event
 - Use proper TypeScript types for event handlers
 - Handle async operations correctly in event handlers
@@ -278,7 +278,7 @@ type Heading = `h${1 | 2 | 3 | 4 | 5 | 6}`
 
 ### Project Structure
 
-```
+```text
 src/
 ├── components/        # Reusable UI components
 │   ├── Button/
