@@ -23,8 +23,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Initial release of Elite Frontend Cursor AI Setup
-- Comprehensive `.cursorrules` configuration for elite frontend development
+- Initial release of Principal Frontend Cursor AI Setup
+- Comprehensive `.cursorrules` configuration for principal frontend development
 - Architecture documentation (`.context/architecture.md`)
 - Design system documentation (`.context/design-system.md`)
 - Workflow documentation (`.context/workflows.md`)

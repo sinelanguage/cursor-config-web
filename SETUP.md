@@ -1,4 +1,4 @@
-# Elite Frontend Cursor AI Setup - Installation Guide
+# Principal Frontend Cursor AI Setup - Installation Guide
 
 ## Cursor Auto-Detection vs Manual Setup
 
@@ -7,6 +7,7 @@
 Cursor AI automatically recognizes and uses these files **without any manual configuration**:
 
 #### 1. `.cursorrules` File
+
 - **Location**: Project root
 - **Auto-detected**: ✅ Yes
 - **Purpose**: Configures Cursor AI agent behavior and coding standards
@@ -14,6 +15,7 @@ Cursor AI automatically recognizes and uses these files **without any manual con
 - **No action needed**: Just copy the file to your project root
 
 #### 2. `.context/` Directory
+
 - **Location**: Project root (`.context/`)
 - **Auto-detected**: ✅ Yes
 - **Purpose**: Provides reference documentation for AI context retention
@@ -27,6 +29,7 @@ Cursor AI automatically recognizes and uses these files **without any manual con
 - **No action needed**: Copy the entire `.context/` directory to your project root
 
 #### 3. `.cursor/` Directory
+
 - **Location**: Project root (`.cursor/`)
 - **Auto-detected**: ✅ Yes
 - **Purpose**: Workspace settings and additional rule files
@@ -37,6 +40,7 @@ Cursor AI automatically recognizes and uses these files **without any manual con
 - **No action needed**: Copy the entire `.cursor/` directory to your project root
 
 #### 4. `.cursorignore` File
+
 - **Location**: Project root (`.cursorignore`)
 - **Auto-detected**: ✅ Yes
 - **Purpose**: Controls which files Cursor indexes for AI context
@@ -61,32 +65,38 @@ To verify Cursor is using these files:
 These components need to be manually configured or installed:
 
 #### 1. Project Dependencies
+
 - **Status**: ❌ Manual setup required
 - **Action**: Run `npm install` or copy `templates/package.json` and install
 - **Why**: Cursor doesn't install dependencies automatically
 
 #### 2. Build Configuration Files
+
 - **Status**: ❌ Manual setup required
 - **Files**: `vite.config.ts`, `tsconfig.json`, `eslint.config.js`
 - **Action**: Copy from `templates/` directory and customize
 - **Why**: These are project-specific configurations
 
 #### 3. Git Hooks (Husky)
+
 - **Status**: ❌ Manual setup required
 - **Action**: Run `npx husky install` and configure hooks
 - **Why**: Git hooks need to be initialized in your repository
 
 #### 4. CI/CD Workflows
+
 - **Status**: ❌ Manual setup required
 - **Action**: Copy `.github/workflows/` or `.gitlab-ci.yml` to your repo
 - **Why**: CI/CD is repository-specific and needs to be configured
 
 #### 5. Environment Variables
+
 - **Status**: ❌ Manual setup required
 - **Action**: Create `.env.development` and `.env.production` files
 - **Why**: Environment-specific configuration
 
 #### 6. IDE Settings (Optional)
+
 - **Status**: ❌ Manual setup required
 - **Action**: Copy VS Code settings if you want IDE-specific configuration
 - **Why**: IDE settings are user/repository specific
@@ -385,7 +395,7 @@ cat > index.html << 'EOF'
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Elite Frontend App</title>
+    <title>Principal Frontend App</title>
   </head>
   <body>
     <div id="root"></div>
@@ -416,7 +426,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-8">Welcome to Elite Frontend</h1>
+        <h1 className="text-4xl font-bold mb-8">Welcome to Principal Frontend</h1>
         <div className="space-x-4">
           <Button variant="primary" size="md">
             Primary Button
@@ -446,7 +456,7 @@ html {
 EOF
 ```
 
-## Verification
+## Setup Verification
 
 ### Run Quality Checks
 
@@ -486,6 +496,7 @@ npm run dev
    - Modify templates as needed
 
 2. **Set Up Snyk Security Scanning**
+
    ```bash
    npm install -g snyk
    snyk auth
@@ -493,22 +504,25 @@ npm run dev
    ```
 
 3. **Configure Storybook**
+
    ```bash
    npm run storybook
    # Add your first story in src/components/Button/Button.stories.tsx
    ```
 
 4. **Write Your First Tests**
+
    ```bash
    # Add test in src/components/Button/Button.test.tsx
    npm run test
    ```
 
 5. **Set Up Git**
+
    ```bash
    git init
    git add .
-   git commit -m "feat: initial setup with elite frontend configuration"
+   git commit -m "feat: initial setup with principal frontend configuration"
    git remote add origin <your-repo-url>
    git push -u origin main
    ```
@@ -520,6 +534,7 @@ npm run dev
 If Cursor doesn't seem to be using your configuration:
 
 1. **Verify file locations**:
+
    ```bash
    # Check files exist in project root
    ls -la .cursorrules
@@ -531,10 +546,12 @@ If Cursor doesn't seem to be using your configuration:
    - Ensure they're not symlinks to inaccessible locations
 
 3. **Verify not gitignored**:
+
    ```bash
    # Check .gitignore doesn't exclude these files
    cat .gitignore | grep -E "cursorrules|\.context"
    ```
+
    - These files **should be committed** to git
    - Cursor works best when files are in the repository
 
@@ -599,5 +616,4 @@ npm run build
 
 ---
 
-**Your elite frontend setup is ready to use!**
-
+**Your principal frontend setup is ready to use!**

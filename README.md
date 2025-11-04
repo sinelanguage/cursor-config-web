@@ -1,8 +1,8 @@
-# Elite Frontend Cursor AI Setup
+# Principal Frontend Cursor AI Setup
 
 > **Version**: See [latest release](https://github.com/your-org/cursor-config/releases/latest) | [CHANGELOG.md](CHANGELOG.md) | Standards evolve over time - check git tags for version tracking
 
-A comprehensive Cursor AI configuration for elite frontend development, featuring modern TypeScript, React 18+, Module Federation, enterprise-grade testing, security, and accessibility standards.
+A comprehensive Cursor AI configuration for principal frontend development, featuring modern TypeScript, React 18+, Module Federation, enterprise-grade testing, security, and accessibility standards.
 
 **Note**: This configuration follows semantic versioning (SemVer). See [CHANGELOG.md](CHANGELOG.md) for detailed change history and use git tags to track specific versions of these standards.
 
@@ -26,6 +26,7 @@ This is a **portable Cursor AI configuration** that can be used in any new front
 ### Cursor Auto-Detection
 
 **Cursor automatically detects**:
+
 - ✅ `.cursorrules` - AI agent configuration (works immediately)
 - ✅ `.context/` - Documentation for AI context (auto-indexed)
 - ✅ `.cursor/` - Workspace settings and additional rules (auto-detected)
@@ -38,6 +39,7 @@ For detailed information about what Cursor automatically detects vs. what requir
 ### 1. Copy to Your Project
 
 **Minimal (Cursor AI only)**:
+
 ```bash
 # Copy only Cursor-specific files
 cp .cursorrules <your-project-root>/
@@ -47,6 +49,7 @@ cp -r .cursor <your-project-root>/
 ```
 
 **Complete setup**:
+
 ```bash
 # Copy all configuration files
 cp .cursorrules .cursorignore <your-project-root>/
@@ -77,7 +80,7 @@ npm run dev
 
 ### 🤖 AI Agent Rules
 
-The `.cursorrules` file configures Cursor AI to act as an elite frontend architect with expertise in:
+The `.cursorrules` file configures Cursor AI to act as a principal frontend architect with expertise in:
 
 - **TypeScript Excellence**: No `any` types, strict mode, advanced patterns
 - **React 18+ Modern Practices**: Concurrent features, Suspense, performance optimization
@@ -100,6 +103,7 @@ The `.context/` directory provides AI context for your project:
 ### 🚀 Automation
 
 **GitHub Actions**:
+
 - `ci.yml` - Lint, type-check, test, build
 - `security.yml` - Snyk scanning, dependency audits
 - `a11y.yml` - Accessibility testing
@@ -107,6 +111,7 @@ The `.context/` directory provides AI context for your project:
 - `coverage.yml` - Test coverage reporting
 
 **GitLab CI**:
+
 - Parallel test jobs
 - Security scanning
 - Merge request automation
@@ -114,6 +119,7 @@ The `.context/` directory provides AI context for your project:
 ### 📋 Project Templates
 
 Ready-to-use configurations:
+
 - `vite.config.ts` - Module Federation setup
 - `tsconfig.json` - Strict TypeScript configuration
 - `eslint.config.js` - Flat config with all rules
@@ -177,6 +183,7 @@ federation({
 ### Performance Targets
 
 Enforced Web Vitals targets:
+
 - **LCP**: < 2.5s
 - **FID**: < 100ms
 - **CLS**: < 0.1
@@ -201,6 +208,7 @@ Enforced Web Vitals targets:
 ### Accessibility
 
 WCAG 2.2 Level AA compliance:
+
 - Semantic HTML required
 - ARIA attributes when needed
 - Keyboard navigation support
@@ -209,7 +217,8 @@ WCAG 2.2 Level AA compliance:
 
 ## Project Structure
 
-```
+```bash
+# Directory structure
 .cursor/
 ├── .cursorrules                 # Main AI agent rules
 ├── .cursorignore                # Files to exclude from AI indexing
@@ -272,6 +281,7 @@ To verify Cursor is using your configuration:
    - Should reference design system patterns from `design-system.md`
 
 If Cursor doesn't reference these files, verify:
+
 - `.cursorrules` exists in project root
 - `.context/` directory exists in project root
 - Files are not gitignored (they should be committed)
@@ -292,6 +302,7 @@ If Cursor doesn't reference these files, verify:
 ### Environment Variables
 
 Create `.env.development`:
+
 ```bash
 VITE_API_URL=http://localhost:3000/api
 VITE_ENABLE_DEV_TOOLS=true
@@ -300,6 +311,7 @@ VITE_ENABLE_DEV_TOOLS=true
 ### GitHub Secrets (for CI/CD)
 
 Required secrets:
+
 - `SNYK_TOKEN` - For Snyk security scanning
 - `CHROMATIC_PROJECT_TOKEN` - For visual regression testing
 - `CODECOV_TOKEN` - For coverage reporting (optional)
@@ -307,6 +319,7 @@ Required secrets:
 ### GitLab Variables
 
 Required variables:
+
 - `SNYK_TOKEN` - For Snyk security scanning
 
 ## Development Workflow
@@ -397,6 +410,7 @@ Edit `.cursorrules` to add project-specific rules:
 ### Modifying Templates
 
 Edit files in `templates/` directory to customize:
+
 - `vite.config.ts` - Build configuration
 - `tsconfig.json` - TypeScript settings
 - `eslint.config.js` - Linting rules
@@ -446,6 +460,7 @@ This configuration is provided as-is for use in your projects.
 ## Support
 
 For issues with this Cursor setup:
+
 1. Check documentation in `.context/`
 2. Review GitHub/GitLab CI logs
 3. Open an issue on the repository
@@ -453,4 +468,3 @@ For issues with this Cursor setup:
 ---
 
 **Built for developers who refuse to compromise on quality.**
-
