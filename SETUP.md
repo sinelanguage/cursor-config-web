@@ -634,4 +634,93 @@ The project uses `npm audit` (built-in and free) for dependency vulnerability sc
 
 The CI/CD pipeline runs `npm audit` automatically on every push and pull request.
 
-## Environment Setup
+## Troubleshooting
+
+### Cursor Not Detecting Configuration
+
+If Cursor doesn't seem to be using your configuration:
+
+1. **Verify file locations**:
+
+   ```bash
+   # Check files exist in project root
+   ls -la .cursorrules
+   ls -la .context/
+   ```
+
+2. **Check file permissions**:
+   - Files should be readable
+   - Ensure they're not symlinks to inaccessible locations
+
+3. **Verify not gitignored**:
+
+   ```bash
+   # Check .gitignore doesn't exclude these files
+   cat .gitignore | grep -E "cursorrules|\.context"
+   ```
+
+   - These files **should be committed** to git
+   - Cursor works best when files are in the repository
+
+4. **Restart Cursor IDE**:
+   - Close and reopen Cursor
+   - Sometimes Cursor needs a restart to detect new files
+
+5. **Check Cursor settings**:
+   - Ensure Cursor has access to workspace files
+   - Check if any workspace settings override defaults
+
+6. **Test with direct questions**:
+   - Ask: "What rules are in .cursorrules?"
+   - Ask: "What's in the architecture.md file?"
+   - If Cursor doesn't reference these, it's not detecting them
+
+### Module Resolution Errors
+
+```bash
+# Clear node_modules and reinstall
+rm -rf node_modules package-lock.json
+npm install
+```
+
+### Type Errors
+
+```bash
+# Check TypeScript version
+npx tsc --version  # Should be 5.5+
+
+# Delete type cache
+rm -rf node_modules/.cache
+npm run type-check
+```
+
+### Build Errors
+
+```bash
+# Clear Vite cache
+rm -rf .vite dist
+npm run build
+```
+
+## Verification Checklist
+
+- [ ] All dependencies installed
+- [ ] `npm run dev` starts successfully
+- [ ] `npm run type-check` passes
+- [ ] `npm run lint` passes
+- [ ] `npm run test` runs tests
+- [ ] `npm run build` creates dist/ folder
+- [ ] Git hooks are installed
+- [ ] CI/CD workflows are configured
+- [ ] Environment variables are set
+
+## Getting Help
+
+- Check `.context/` documentation
+- Review `ARCHITECTURE.md`
+- See `CONTRIBUTING.md` for development workflow
+- Read `README.md` for usage instructions
+
+---
+
+**Your principal frontend setup is ready to use!**
