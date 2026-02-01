@@ -181,6 +181,40 @@ npx husky install
 # (see detailed steps below)
 ```
 
+## Greenfield vs Existing Projects
+
+### Greenfield (new app)
+
+1. Copy `.cursorrules`, `.cursorignore`, `.context/`, and `.cursor/` to your new repo.
+2. Apply templates from `templates/` (Vite, TypeScript, ESLint, Storybook).
+3. Install dependencies and run `npm run dev`.
+4. Use skills from Agent chat via `/` (for example, `/component-scaffold`).
+
+### Existing project (already started)
+
+1. Add `.cursorrules`, `.cursorignore`, `.context/`, and `.cursor/` first (no code changes).
+2. Validate Cursor detection (ask about `.cursorrules` and `.context/`).
+3. Adopt templates gradually by diffing against your current configs.
+4. Use skills to guide refactors and documentation updates.
+
+## How to Use This Repo in Practice
+
+### Core Usage Flow
+
+1. Copy Cursor files into the repo (`.cursorrules`, `.cursorignore`, `.context/`, `.cursor/`).
+2. Open the repo in Cursor and verify auto-detection.
+3. Adopt templates for build and lint config (or diff and merge).
+4. Install dependencies and run quality checks.
+5. Enable CI/CD workflows and add required secrets.
+6. Use skills (`/` in Agent chat) for repeatable workflows.
+7. Keep `CHANGELOG.md` up to date and tag releases.
+
+### Ongoing Maintenance
+
+- Review `.context/` docs after architectural changes.
+- Update skills and rules as conventions evolve.
+- Run `npm audit` and keep dependencies current.
+
 ## Quick Install
 
 ### Option 1: Copy All Files to New Project

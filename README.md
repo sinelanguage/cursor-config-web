@@ -82,6 +82,54 @@ npm run dev
 
 **Note**: See [SETUP.md](SETUP.md) for complete installation instructions and verification steps.
 
+## How to Use This Repo (End-to-End)
+
+Use this section as the default workflow for both new and existing projects.
+
+1. **Decide your scope**
+   - Cursor-only: copy `.cursorrules`, `.cursorignore`, `.context/`, `.cursor/`.
+   - Full stack: also copy `templates/`, `.github/`, and `.gitlab-ci.yml`.
+2. **Open the project in Cursor**
+   - Cursor auto-detects rules, context, skills, agents, and ignore patterns.
+3. **Verify detection**
+   - Ask about `.cursorrules` and `.context/` and confirm replies reference them.
+4. **Apply templates**
+   - Replace or diff your existing `vite.config.ts`, `tsconfig.json`, and `eslint.config.js`.
+5. **Install dependencies**
+   - Copy `templates/package.json` if starting fresh, then run `npm install`.
+6. **Wire CI/CD (optional)**
+   - Copy workflows and add required secrets/variables.
+7. **Use skills and subagents**
+   - Invoke skills with `/` in Agent chat for repeatable workflows.
+8. **Maintain standards**
+   - Update `CHANGELOG.md` for meaningful changes and tag releases.
+
+## How to Use Skills
+
+Skills are invoked from Agent chat and run as guided workflows.
+
+1. Open **Agent** in Cursor.
+2. Type `/` to open the skills menu.
+3. Select a skill (for example, `/component-scaffold`).
+4. Provide the requested inputs.
+5. Review the generated output and apply changes.
+
+**Tip**: Skills in this repo are set to explicit invocation, so they only run when you pick them from the `/` menu.
+
+## Greenfield vs Existing Projects
+
+### Greenfield (new app)
+
+- Copy `.cursorrules`, `.cursorignore`, `.context/`, and `.cursor/` into the new repo.
+- Apply templates from `templates/` for Vite, TypeScript, ESLint, and Storybook.
+- Run `/feature-spec` and `/test-plan` before larger features.
+
+### Existing project (already started)
+
+- Add `.cursorrules`, `.cursorignore`, `.context/`, and `.cursor/` first (no code changes).
+- Adopt templates gradually by diffing with current configs.
+- Use `/docs-update`, `/a11y-audit`, and `/perf-check` to improve existing code.
+
 ## What You Get
 
 ### 🤖 AI Agent Rules
