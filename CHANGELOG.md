@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update Cursor auto-detection guidance to include skills and subagents
 - Add usage guidance for skills and greenfield/existing setups
 - Add end-to-end usage flow for applying this repo
+- Rename repo to `cursor-config-web` and update README stack section
 
 ### Deprecated
 

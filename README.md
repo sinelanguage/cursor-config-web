@@ -1,8 +1,8 @@
-# Principal Frontend Cursor AI Setup
+# Cursor Config Web
 
-> **Version**: See [latest release](https://github.com/your-org/cursor-config/releases/latest) | [CHANGELOG.md](CHANGELOG.md) | Standards evolve over time - check git tags for version tracking
+> **Version**: See [latest release](https://github.com/sinelanguage/cursor-config-web/releases/latest) | [CHANGELOG.md](CHANGELOG.md) | Standards evolve over time - check git tags for version tracking
 
-A comprehensive Cursor AI configuration for principal frontend development, featuring modern TypeScript, React 18+, Module Federation, enterprise-grade testing, security, and accessibility standards.
+A comprehensive Cursor AI configuration for principal frontend development, featuring modern TypeScript, React 18+, Vite, Module Federation, and enterprise-grade testing, security, and accessibility standards.
 
 **Note**: This configuration follows semantic versioning (SemVer). See [CHANGELOG.md](CHANGELOG.md) for detailed change history and use git tags to track specific versions of these standards.
 
@@ -440,18 +440,17 @@ npm run storybook
 npm run build-storybook
 ```
 
-## Tech Stack
+## Web Stack
 
 - **React** 18.3+
 - **TypeScript** 5.5+
 - **Vite** 5+
 - **Module Federation** (v1 & v2)
-- **Vitest** for testing
-- **Playwright** for E2E
-- **Storybook** 8+
-- **ESLint** 9+ (flat config)
-- **Prettier** 3+
-- **Husky** for git hooks
+- **Storybook** 8+ (component docs and interaction tests)
+- **Testing**: Vitest, Testing Library, Playwright, axe-core
+- **Design system**: ShadCN UI (copy-paste), Radix UI primitives, Tailwind CSS
+- **Linting/formatting**: ESLint 9+ (flat config), Prettier 3+
+- **Git hooks**: Husky + lint-staged
 
 See `.context/stack.md` for complete stack details.
 
