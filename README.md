@@ -1,8 +1,8 @@
-# Principal Frontend Cursor AI Setup
+# Cursor Config Web
 
-> **Version**: See [latest release](https://github.com/your-org/cursor-config/releases/latest) | [CHANGELOG.md](CHANGELOG.md) | Standards evolve over time - check git tags for version tracking
+> **Version**: See [latest release](https://github.com/sinelanguage/cursor-config-web/releases/latest) | [CHANGELOG.md](CHANGELOG.md) | Standards evolve over time - check git tags for version tracking
 
-A comprehensive Cursor AI configuration for principal frontend development, featuring modern TypeScript, React 18+, Module Federation, enterprise-grade testing, security, and accessibility standards.
+A comprehensive Cursor AI configuration for principal frontend development, featuring modern TypeScript, React 18+, Vite, Module Federation, and enterprise-grade testing, security, and accessibility standards.
 
 **Note**: This configuration follows semantic versioning (SemVer). See [CHANGELOG.md](CHANGELOG.md) for detailed change history and use git tags to track specific versions of these standards.
 
@@ -14,6 +14,10 @@ This is a **portable Cursor AI configuration** that can be used in any new front
   - ✅ **Auto-detected by Cursor** - Works immediately after copying
 - **Context Documentation** (`.context/`) - Reference docs for AI context retention
   - ✅ **Auto-detected by Cursor** - Automatically indexed for AI context
+- **Agent Skills** (`.cursor/skills/`) - Reusable workflows and task playbooks
+  - ✅ **Auto-detected by Cursor** - Discovered at startup and available via `/`
+- **Custom Subagents** (`.cursor/agents/`) - Specialized helpers for verification and parallel work
+  - ✅ **Auto-detected by Cursor** - Available to Agent for delegation
 - **Automation Templates** - GitHub Actions and GitLab CI configurations
   - ⚙️ Manual setup required - Copy to `.github/` or project root
 - **Project Templates** - Reusable config files for Vite, TypeScript, ESLint, Storybook
@@ -30,6 +34,8 @@ This is a **portable Cursor AI configuration** that can be used in any new front
 - ✅ `.cursorrules` - AI agent configuration (works immediately)
 - ✅ `.context/` - Documentation for AI context (auto-indexed)
 - ✅ `.cursor/` - Workspace settings and additional rules (auto-detected)
+- ✅ `.cursor/skills/` - Agent skills (auto-discovered, slash-command ready)
+- ✅ `.cursor/agents/` - Custom subagents (auto-discovered)
 - ✅ `.cursorignore` - Files to exclude from AI indexing (auto-applied)
 
 **No configuration needed** - Just copy these files and Cursor will use them!
@@ -76,6 +82,54 @@ npm run dev
 
 **Note**: See [SETUP.md](SETUP.md) for complete installation instructions and verification steps.
 
+## How to Use This Repo (End-to-End)
+
+Use this section as the default workflow for both new and existing projects.
+
+1. **Decide your scope**
+   - Cursor-only: copy `.cursorrules`, `.cursorignore`, `.context/`, `.cursor/`.
+   - Full stack: also copy `templates/`, `.github/`, and `.gitlab-ci.yml`.
+2. **Open the project in Cursor**
+   - Cursor auto-detects rules, context, skills, agents, and ignore patterns.
+3. **Verify detection**
+   - Ask about `.cursorrules` and `.context/` and confirm replies reference them.
+4. **Apply templates**
+   - Replace or diff your existing `vite.config.ts`, `tsconfig.json`, and `eslint.config.js`.
+5. **Install dependencies**
+   - Copy `templates/package.json` if starting fresh, then run `npm install`.
+6. **Wire CI/CD (optional)**
+   - Copy workflows and add required secrets/variables.
+7. **Use skills and subagents**
+   - Invoke skills with `/` in Agent chat for repeatable workflows.
+8. **Maintain standards**
+   - Update `CHANGELOG.md` for meaningful changes and tag releases.
+
+## How to Use Skills
+
+Skills are invoked from Agent chat and run as guided workflows.
+
+1. Open **Agent** in Cursor.
+2. Type `/` to open the skills menu.
+3. Select a skill (for example, `/component-scaffold`).
+4. Provide the requested inputs.
+5. Review the generated output and apply changes.
+
+**Tip**: Skills in this repo are set to explicit invocation, so they only run when you pick them from the `/` menu.
+
+## Greenfield vs Existing Projects
+
+### Greenfield (new app)
+
+- Copy `.cursorrules`, `.cursorignore`, `.context/`, and `.cursor/` into the new repo.
+- Apply templates from `templates/` for Vite, TypeScript, ESLint, and Storybook.
+- Run `/feature-spec` and `/test-plan` before larger features.
+
+### Existing project (already started)
+
+- Add `.cursorrules`, `.cursorignore`, `.context/`, and `.cursor/` first (no code changes).
+- Adopt templates gradually by diffing with current configs.
+- Use `/docs-update`, `/a11y-audit`, and `/perf-check` to improve existing code.
+
 ## What You Get
 
 ### 🤖 AI Agent Rules
@@ -99,6 +153,24 @@ The `.context/` directory provides AI context for your project:
 - **workflows.md** - Git branching, commit conventions, CI/CD
 - **conventions.md** - File naming, import organization, code structure
 - **stack.md** - Complete technology stack with versions
+
+### 🧰 Agent Skills
+
+Agent Skills are reusable, discoverable workflows that Cursor can invoke automatically or via `/` commands. This repo includes a sample skill you can tailor for your stack.
+
+- **Location**: `.cursor/skills/<skill-name>/SKILL.md`
+- **Format**: YAML frontmatter + instructions
+- **Use cases**: scaffolding components, updating docs, running release checklists
+- **Requires**: Cursor 2.4+ (skills support)
+
+### 🧪 Custom Subagents
+
+Subagents are specialized helpers that the main agent can delegate to for verification or parallel work. This repo includes a sample verifier subagent.
+
+- **Location**: `.cursor/agents/<name>.md`
+- **Format**: YAML frontmatter + prompt
+- **Use cases**: code review, test verification, doc validation
+- **Requires**: Cursor 2.4+ (subagents support)
 
 ### 🚀 Automation
 
@@ -222,7 +294,12 @@ WCAG 2.2 Level AA compliance:
 ├── .cursorignore                # Files to exclude from AI indexing
 ├── .cursor/                     # Workspace settings
 │   ├── README.md                # Cursor workspace documentation
+│   ├── agents/                  # Custom subagents (optional)
+│   │   └── verifier.md
 │   ├── settings.json            # Workspace IDE settings
+│   ├── skills/                  # Agent skills (optional)
+│   │   └── component-scaffold/
+│   │       └── SKILL.md
 │   └── rules/                   # Additional rule files
 │       ├── README.md
 │       └── project-specific.md
@@ -261,6 +338,8 @@ Once copied to your project, Cursor AI will:
 2. **Automatically reference** `.context/` documentation for architectural decisions
 3. **Suggest** using templates when creating new files
 4. **Enforce** quality gates (types, tests, security, a11y)
+5. **Discover** skills and apply them when relevant
+6. **Delegate** verification to subagents when helpful
 
 ### Verifying Cursor Configuration
 
@@ -361,18 +440,17 @@ npm run storybook
 npm run build-storybook
 ```
 
-## Tech Stack
+## Web Stack
 
 - **React** 18.3+
 - **TypeScript** 5.5+
 - **Vite** 5+
 - **Module Federation** (v1 & v2)
-- **Vitest** for testing
-- **Playwright** for E2E
-- **Storybook** 8+
-- **ESLint** 9+ (flat config)
-- **Prettier** 3+
-- **Husky** for git hooks
+- **Storybook** 8+ (component docs and interaction tests)
+- **Testing**: Vitest, Testing Library, Playwright, axe-core
+- **Design system**: ShadCN UI (copy-paste), Radix UI primitives, Tailwind CSS
+- **Linting/formatting**: ESLint 9+ (flat config), Prettier 3+
+- **Git hooks**: Husky + lint-staged
 
 See `.context/stack.md` for complete stack details.
 
@@ -401,6 +479,31 @@ Edit `.cursorrules` to add project-specific rules:
 - Follow Material Design principles
 - Use Zustand for global state
 ```
+
+### Adding Agent Skills
+
+Create a new skill folder with a `SKILL.md` file:
+
+```text
+.cursor/
+└── skills/
+    └── my-skill/
+        └── SKILL.md
+```
+
+Skills can be invoked with `/my-skill` in chat, or discovered automatically when relevant.
+
+### Adding Custom Subagents
+
+Create a subagent file in `.cursor/agents/`:
+
+```text
+.cursor/
+└── agents/
+    └── verifier.md
+```
+
+Subagents are used by Agent for parallel work or verification.
 
 ### Modifying Templates
 

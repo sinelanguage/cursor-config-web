@@ -39,7 +39,27 @@ Cursor AI automatically recognizes and uses these files **without any manual con
   - `rules/` - Additional rule files that complement `.cursorrules`
 - **No action needed**: Copy the entire `.cursor/` directory to your project root
 
-#### 4. `.cursorignore` File
+#### 4. `.cursor/skills/` Directory
+
+- **Location**: Project root (`.cursor/skills/`)
+- **Auto-detected**: ✅ Yes
+- **Purpose**: Agent Skills (reusable workflows and task playbooks)
+- **How it works**: Cursor discovers skills at startup and makes them available via `/`
+- **Format**: `.cursor/skills/<skill-name>/SKILL.md`
+- **Requires**: Cursor 2.4+ (skills support)
+- **No action needed**: Copy the entire `.cursor/skills/` directory to your project root
+
+#### 5. `.cursor/agents/` Directory
+
+- **Location**: Project root (`.cursor/agents/`)
+- **Auto-detected**: ✅ Yes
+- **Purpose**: Custom subagents for verification or parallel work
+- **How it works**: Cursor loads subagents automatically and can delegate tasks
+- **Format**: `.cursor/agents/<name>.md`
+- **Requires**: Cursor 2.4+ (subagents support)
+- **No action needed**: Copy the entire `.cursor/agents/` directory to your project root
+
+#### 6. `.cursorignore` File
 
 - **Location**: Project root (`.cursorignore`)
 - **Auto-detected**: ✅ Yes
@@ -59,6 +79,10 @@ To verify Cursor is using these files:
 2. **Check `.context/`**:
    - Ask Cursor: "What is our Module Federation architecture?"
    - It should reference `architecture.md` from `.context/`
+
+3. **Check Skills**:
+   - Type `/component-scaffold` in Agent chat
+   - It should appear in the slash-command list
 
 ### ⚙️ What Requires Manual Setup
 
@@ -104,10 +128,12 @@ These components need to be manually configured or installed:
 ### Quick Reference Table
 
 | Component | Auto-Detected | Manual Setup Required | Notes |
-|-----------|--------------|----------------------|-------|
+| --------- | ------------ | -------------------- | ----- |
 | `.cursorrules` | ✅ Yes | ❌ No | Works immediately after copy |
 | `.context/` directory | ✅ Yes | ❌ No | Automatically indexed |
 | `.cursor/` directory | ✅ Yes | ❌ No | Workspace settings and rules |
+| `.cursor/skills/` | ✅ Yes | ❌ No | Skills available via `/` |
+| `.cursor/agents/` | ✅ Yes | ❌ No | Custom subagents available |
 | `.cursorignore` | ✅ Yes | ❌ No | Controls AI indexing |
 | Project dependencies | ❌ No | ✅ Yes | Run `npm install` |
 | Build configs (Vite, TS) | ❌ No | ✅ Yes | Copy from `templates/` |
@@ -154,6 +180,40 @@ npx husky install
 # Create environment files
 # (see detailed steps below)
 ```
+
+## Greenfield vs Existing Projects
+
+### Greenfield (new app)
+
+1. Copy `.cursorrules`, `.cursorignore`, `.context/`, and `.cursor/` to your new repo.
+2. Apply templates from `templates/` (Vite, TypeScript, ESLint, Storybook).
+3. Install dependencies and run `npm run dev`.
+4. Use skills from Agent chat via `/` (for example, `/component-scaffold`).
+
+### Existing project (already started)
+
+1. Add `.cursorrules`, `.cursorignore`, `.context/`, and `.cursor/` first (no code changes).
+2. Validate Cursor detection (ask about `.cursorrules` and `.context/`).
+3. Adopt templates gradually by diffing against your current configs.
+4. Use skills to guide refactors and documentation updates.
+
+## How to Use This Repo in Practice
+
+### Core Usage Flow
+
+1. Copy Cursor files into the repo (`.cursorrules`, `.cursorignore`, `.context/`, `.cursor/`).
+2. Open the repo in Cursor and verify auto-detection.
+3. Adopt templates for build and lint config (or diff and merge).
+4. Install dependencies and run quality checks.
+5. Enable CI/CD workflows and add required secrets.
+6. Use skills (`/` in Agent chat) for repeatable workflows.
+7. Keep `CHANGELOG.md` up to date and tag releases.
+
+### Ongoing Maintenance
+
+- Review `.context/` docs after architectural changes.
+- Update skills and rules as conventions evolve.
+- Run `npm audit` and keep dependencies current.
 
 ## Quick Install
 
@@ -244,6 +304,31 @@ mkdir -p .storybook
 cp templates/.storybook/main.ts .storybook/main.ts
 cp templates/.storybook/preview.tsx .storybook/preview.tsx
 ```
+
+### 3.5 Optional: Add Agent Skills
+
+If you want reusable workflows available via `/` commands:
+
+```text
+.cursor/
+└── skills/
+    └── component-scaffold/
+        └── SKILL.md
+```
+
+You can invoke a skill by typing `/component-scaffold` in Agent chat.
+
+### 3.6 Optional: Add Custom Subagents
+
+If you want verification or parallel workflows:
+
+```text
+.cursor/
+└── agents/
+    └── verifier.md
+```
+
+The Agent can automatically delegate verification tasks to this subagent.
 
 ### 4. Set Up Environment Variables
 
