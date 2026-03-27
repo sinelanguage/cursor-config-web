@@ -252,6 +252,7 @@ Fast unit testing:
   "scripts": {
     "test": "vitest",
     "test:ui": "vitest --ui",
+    "test:integration": "vitest run --grep integration",
     "test:coverage": "vitest --coverage"
   }
 }
@@ -263,11 +264,11 @@ Fast unit testing:
 
 - `@testing-library/react`: `^16.0.0`
 - `@testing-library/jest-dom`: `^6.0.0`
-- `@testing-library/user-event`: `^15.0.0`
+- `@testing-library/user-event`: `^14.6.1`
 
 ### Playwright
 
-**Version**: `^1.40.0`
+**Version**: `^1.58.2`
 
 E2E testing:
 
@@ -327,9 +328,9 @@ Configuration:
 
 ## Security Tools
 
-### Snyk
+### Snyk (Optional)
 
-**Version**: `^1.1292.0`
+Use Snyk only if your project has `SNYK_TOKEN` configured and you want an additional scan alongside `npm audit`.
 
 Commands:
 
@@ -408,7 +409,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
       - run: npm ci
       - run: npm run lint
       - run: npm run test
@@ -491,13 +492,13 @@ Recommended:
 
 ### Node Version
 
-**Node**: `20.x` or `22.x`
-**npm**: `9.x` or `10.x`
+**Node**: `22.x`
+**npm**: `10.x`
 
 Use `.nvmrc`:
 
 ```text
-20
+22
 ```
 
 ## Build Targets
@@ -673,7 +674,7 @@ npm install -D \
   @types/node \
   vitest@^2.0.0 \
   @testing-library/react@^16.0.0 \
-  @playwright/test@^1.40.0
+  @playwright/test@^1.58.2
 ```
 
 ## Environment Setup
@@ -715,6 +716,7 @@ npm run dev
     "preview": "vite preview",
     "test": "vitest",
     "test:ui": "vitest --ui",
+    "test:integration": "vitest run --grep integration",
     "test:coverage": "vitest --coverage",
     "test:e2e": "playwright test",
     "lint": "eslint .",
@@ -732,7 +734,7 @@ npm run dev
     "tailwind-merge": "^2.2.0"
   },
   "devDependencies": {
-    "@playwright/test": "^1.40.0",
+    "@playwright/test": "^1.58.2",
     "@storybook/react": "^8.0.0",
     "@testing-library/react": "^16.0.0",
     "@types/node": "^22.0.0",

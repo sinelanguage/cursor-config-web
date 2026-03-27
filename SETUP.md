@@ -263,8 +263,8 @@ npm install -D typescript@^5.5.0 \
   vitest@^2.0.0 \
   @testing-library/react@^16.0.0 \
   @testing-library/jest-dom@^6.4.0 \
-  @testing-library/user-event@^15.0.0 \
-  @playwright/test@^1.40.0 \
+  @testing-library/user-event@^14.6.1 \
+  @playwright/test@^1.58.2 \
   @vitest/coverage-v8@^2.0.0 \
   @vitest/ui@^2.0.0 \
   @storybook/react-vite@^8.0.0 \
@@ -272,8 +272,8 @@ npm install -D typescript@^5.5.0 \
   @storybook/addon-a11y@^8.0.0 \
   @storybook/addon-interactions@^8.0.0 \
   eslint@^9.0.0 \
-  @typescript-eslint/eslint-plugin@^7.18.0 \
-  @typescript-eslint/parser@^7.18.0 \
+  @typescript-eslint/eslint-plugin@^8.57.2 \
+  @typescript-eslint/parser@^8.57.2 \
   eslint-plugin-react@^7.37.0 \
   eslint-plugin-react-hooks@^5.0.0 \
   eslint-plugin-jsx-a11y@^6.9.0 \

@@ -137,7 +137,7 @@ to services/api/client.ts for better maintainability.
 - [ ] Tests added/updated and passing
 - [ ] No TypeScript errors
 - [ ] No linting errors
-- [ ] No security vulnerabilities (Snyk scan passes)
+- [ ] No security vulnerabilities (`npm audit` passes, plus optional Snyk if enabled)
 - [ ] Accessibility tested (axe-core passes)
 - [ ] Storybook stories added/updated
 - [ ] Documentation updated if needed
@@ -214,7 +214,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
       - run: npm ci
       - run: npm run lint
       - run: npm run type-check
@@ -230,15 +230,15 @@ name: Security Scan
 on: [push, pull_request]
 
 jobs:
-  snyk:
+  npm-audit:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: snyk/actions/node@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      - uses: actions/setup-node@v4
         with:
-          args: --severity-threshold=high
+          node-version: '22'
+      - run: npm ci
+      - run: npm audit --audit-level=moderate
 ```
 
 **A11y Workflow** (`a11y.yml`):
@@ -249,14 +249,17 @@ name: Accessibility
 on: [pull_request]
 
 jobs:
-  test:
+  accessibility:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
       - run: npm ci
-      - run: npm run test:a11y
-      - uses: pa11y/pa11y-ci-action@v1
+      - run: npx playwright install --with-deps
+      - run: npm run test:e2e -- --grep "accessibility"
+      - run: npm run test -- --grep "a11y|accessibility"
 ```
 
 ### GitLab CI Configuration
@@ -287,7 +290,7 @@ test:
 security:
   stage: security
   script:
-    - snyk test --severity-threshold=high
+    - npm audit --audit-level=moderate
 
 build:
   stage: build
@@ -502,23 +505,31 @@ git tag -a v1.2.0 -m "Release v1.2.0
    cd <project>
    ```
 
-2. **Install dependencies**
+2. **Apply templates in a scratch app or target project**
 
    ```bash
+   mkdir ../cursor-config-web-scratch
+   cd ../cursor-config-web-scratch
+   cp /path/to/cursor-config-web/templates/package.json package.json
    npm install
    ```
 
-3. **Set up environment variables**
+3. **Create the environment file your app needs**
 
    ```bash
-   cp .env.example .env.development
-   # Edit .env.development with your values
+   cat <<'EOF' > .env.development
+   VITE_API_URL=http://localhost:3000/api
+   VITE_ENABLE_DEV_TOOLS=true
+   EOF
    ```
 
-4. **Start development server**
+4. **Run the relevant local checks**
 
    ```bash
-   npm run dev
+   npm run lint
+   npm run type-check
+   npm run test:ci
+   npm run build
    ```
 
 ### IDE Setup
