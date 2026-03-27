@@ -7,7 +7,7 @@ stages:
   - build
 
 variables:
-  NODE_VERSION: '20'
+  NODE_VERSION: '22'
   PNPM_VERSION: 'latest'
   CACHE_KEY: ${CI_COMMIT_REF_SLUG}-$CI_COMMIT_REF_SLUG
 
@@ -83,7 +83,6 @@ test:integration:
 test:e2e:
   stage: test
   script:
-    - npm install -g @playwright/test
     - npx playwright install --with-deps chromium
     - npm run test:e2e
   artifacts:
@@ -99,19 +98,17 @@ security:
     - npm audit --audit-level=moderate
   allow_failure: true
 
-snyk:
+optional_snyk:
   stage: security
   image: snyk/snyk:latest
-  variables:
-    SNYK_TOKEN: $SNYK_TOKEN
   script:
     - snyk auth $SNYK_TOKEN
     - snyk test --severity-threshold=high
     - snyk code test --severity-threshold=medium
   allow_failure: true
-  only:
-    - merge_requests
-    - main
+  rules:
+    - if: '$SNYK_TOKEN'
+    - when: never
 
 build:
   stage: build
@@ -142,4 +139,3 @@ pages:
       - public
   only:
     - main
-
