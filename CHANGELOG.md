@@ -22,12 +22,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add usage guidance for skills and greenfield/existing setups
 - Add end-to-end usage flow for applying this repo
 - Rename repo to `cursor-config-web` and update README stack section
+- Refresh template dependencies, Storybook setup, and TypeScript/Vite guidance
+- Modernize GitHub Actions and GitLab CI templates to current workflow defaults
 
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+- Add missing Vitest, Playwright, and Storybook preview templates
+- Remove stale setup instructions that referenced missing files and deprecated Husky commands
 
 ### Security
 

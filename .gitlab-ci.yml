@@ -5,16 +5,14 @@ stages:
   - test
   - security
   - build
+  - deploy
 
 variables:
-  NODE_VERSION: '20'
-  PNPM_VERSION: 'latest'
-  CACHE_KEY: ${CI_COMMIT_REF_SLUG}-$CI_COMMIT_REF_SLUG
+  NODE_VERSION: '24'
 
 cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
-    - node_modules/
     - .npm/cache/
 
 image: node:${NODE_VERSION}
@@ -25,11 +23,10 @@ before_script:
 install_dependencies:
   stage: install
   script:
-    - npm ci
+    - npm ci --cache .npm/cache --prefer-offline
   cache:
     key: ${CI_COMMIT_REF_SLUG}
     paths:
-      - node_modules/
       - .npm/cache/
 
 lint:
@@ -39,7 +36,7 @@ lint:
   cache:
     key: ${CI_COMMIT_REF_SLUG}
     paths:
-      - node_modules/
+      - .npm/cache/
     policy: pull
 
 type-check:
@@ -49,7 +46,7 @@ type-check:
   cache:
     key: ${CI_COMMIT_REF_SLUG}
     paths:
-      - node_modules/
+      - .npm/cache/
     policy: pull
 
 test:
@@ -60,32 +57,26 @@ test:
   cache:
     key: ${CI_COMMIT_REF_SLUG}
     paths:
-      - node_modules/
+      - .npm/cache/
     policy: pull
   artifacts:
     reports:
       coverage_report:
         coverage_format: cobertura
-        path: coverage/lcov.info
+        path: coverage/cobertura-coverage.xml
     paths:
       - coverage/
-
-test:integration:
-  stage: test
-  script:
-    - npm run test:integration
-  cache:
-    key: ${CI_COMMIT_REF_SLUG}
-    paths:
-      - node_modules/
-    policy: pull
 
 test:e2e:
   stage: test
   script:
-    - npm install -g @playwright/test
     - npx playwright install --with-deps chromium
     - npm run test:e2e
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - .npm/cache/
+    policy: pull
   artifacts:
     when: always
     paths:
@@ -109,9 +100,9 @@ snyk:
     - snyk test --severity-threshold=high
     - snyk code test --severity-threshold=medium
   allow_failure: true
-  only:
-    - merge_requests
-    - main
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH == "main"'
 
 build:
   stage: build
@@ -124,11 +115,11 @@ build:
   cache:
     key: ${CI_COMMIT_REF_SLUG}
     paths:
-      - node_modules/
+      - .npm/cache/
     policy: pull
-  only:
-    - main
-    - merge_requests
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 
 pages:
   stage: deploy
@@ -140,6 +131,5 @@ pages:
   artifacts:
     paths:
       - public
-  only:
-    - main
-
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'

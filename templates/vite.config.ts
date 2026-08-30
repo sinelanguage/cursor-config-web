@@ -1,6 +1,6 @@
 /**
  * Vite Configuration Template
- * This is a template file for Vite v5+ with React and Module Federation.
+ * This is a template file for Vite v6+ with React and Module Federation.
  * Copy this to your project root and adjust paths/settings as needed.
  * @see https://vitejs.dev/config/
  */
@@ -8,8 +8,8 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import federation from '@originjs/vite-plugin-federation'
-import { fileURLToPath } from 'url'
-import { dirname, resolve } from 'path'
+import { fileURLToPath } from 'node:url'
+import { dirname, resolve } from 'node:path'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -30,12 +30,12 @@ export default defineConfig({
       shared: {
         react: {
           singleton: true,
-          requiredVersion: '^18.3.0',
+          requiredVersion: '^18.3.1',
           eager: false, // Lazy load by default
         },
         'react-dom': {
           singleton: true,
-          requiredVersion: '^18.3.0',
+          requiredVersion: '^18.3.1',
           eager: false,
         },
         // Add other shared dependencies as needed
@@ -53,9 +53,10 @@ export default defineConfig({
     },
   },
   build: {
-    target: 'esnext', // Modern target for better tree-shaking
+    target: 'es2022',
     minify: 'esbuild', // Fast minification
     sourcemap: true, // Source maps for debugging
+    reportCompressedSize: true,
     rollupOptions: {
       output: {
         // Split chunks for better caching
@@ -88,4 +89,3 @@ export default defineConfig({
     include: ['react', 'react-dom'],
   },
 })
-

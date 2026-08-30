@@ -2,7 +2,7 @@
 
 > **Version**: See [latest release](https://github.com/sinelanguage/cursor-config-web/releases/latest) | [CHANGELOG.md](CHANGELOG.md) | Standards evolve over time - check git tags for version tracking
 
-A comprehensive Cursor AI configuration for principal frontend development, featuring modern TypeScript, React 18+, Vite, Module Federation, and enterprise-grade testing, security, and accessibility standards.
+A comprehensive Cursor AI configuration for principal frontend development, featuring modern TypeScript, React 18.3+, Vite 6, Module Federation, and enterprise-grade testing, security, and accessibility standards.
 
 **Note**: This configuration follows semantic versioning (SemVer). See [CHANGELOG.md](CHANGELOG.md) for detailed change history and use git tags to track specific versions of these standards.
 
@@ -195,14 +195,14 @@ Ready-to-use configurations:
 - `vite.config.ts` - Module Federation setup
 - `tsconfig.json` - Strict TypeScript configuration
 - `eslint.config.js` - Flat config with all rules
-- `.storybook/` - Storybook 8+ with testing addons
+- `.storybook/` - Storybook 8.6+ with streamlined testing addons
 - `package.json` - Complete scripts and dependencies
 
 ## Key Features
 
 ### Type Safety First
 
-Zero tolerance for `any` types. Every piece of code is fully typed with TypeScript 5.5+.
+Zero tolerance for `any` types. Every piece of code is fully typed with TypeScript 5.9+.
 
 ```typescript
 // ✅ Good
@@ -443,8 +443,8 @@ npm run build-storybook
 ## Web Stack
 
 - **React** 18.3+
-- **TypeScript** 5.5+
-- **Vite** 5+
+- **TypeScript** 5.9+
+- **Vite** 6+
 - **Module Federation** (v1 & v2)
 - **Storybook** 8+ (component docs and interaction tests)
 - **Testing**: Vitest, Testing Library, Playwright, axe-core

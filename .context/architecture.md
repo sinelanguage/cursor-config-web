@@ -129,8 +129,8 @@ export default defineConfig({
         './utils': './src/utils',
       },
       shared: {
-        react: { singleton: true, requiredVersion: '^18.0.0' },
-        'react-dom': { singleton: true, requiredVersion: '^18.0.0' },
+        react: { singleton: true, requiredVersion: '^18.3.1' },
+        'react-dom': { singleton: true, requiredVersion: '^18.3.1' },
       },
     }),
   ],
@@ -145,12 +145,12 @@ export default defineConfig({
 shared: {
   'react': {
     singleton: true,        // Only one instance
-    requiredVersion: '^18.0.0',
+    requiredVersion: '^18.3.1',
     eager: false,          // Lazy load if not used immediately
   },
   'react-dom': {
     singleton: true,
-    requiredVersion: '^18.0.0',
+    requiredVersion: '^18.3.1',
   },
   'lodash': {
     requiredVersion: '^4.17.21',

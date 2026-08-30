@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
     /* Language and Environment */
-    "target": "ES2022",
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "target": "ES2023",
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
     "jsx": "react-jsx",
     "module": "ESNext",
     "moduleResolution": "bundler",
+    "moduleDetection": "force",
+    "useDefineForClassFields": true,
     
     /* Type Checking - STRICT MODE */
     "strict": true,
@@ -15,6 +17,7 @@
     "noUncheckedIndexedAccess": true,
     "noImplicitReturns": true,
     "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedSideEffectImports": true,
     
     /* Imports */
     "resolveJsonModule": true,
@@ -43,7 +46,9 @@
     "src/**/*",
     "vite.config.ts",
     "vitest.config.ts",
-    "playwright.config.ts"
+    "playwright.config.ts",
+    ".storybook/**/*.ts",
+    ".storybook/**/*.tsx"
   ],
   "exclude": [
     "node_modules",
@@ -56,4 +61,3 @@
     // { "path": "./packages/shared" }
   ]
 }
-

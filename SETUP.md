@@ -104,7 +104,7 @@ These components need to be manually configured or installed:
 #### 3. Git Hooks (Husky)
 
 - **Status**: ❌ Manual setup required
-- **Action**: Run `npx husky install` and configure hooks
+- **Action**: Run `npx husky init` and customize the generated hooks
 - **Why**: Git hooks need to be initialized in your repository
 
 #### 4. CI/CD Workflows
@@ -175,7 +175,7 @@ cp templates/tsconfig.json tsconfig.json
 cp templates/eslint.config.js eslint.config.js
 
 # Initialize git hooks
-npx husky install
+npx husky init
 
 # Create environment files
 # (see detailed steps below)
@@ -250,37 +250,41 @@ npm init -y
 
 ```bash
 # Core dependencies
-npm install react@^18.3.0 react-dom@^18.3.0
+npm install react@^18.3.1 react-dom@^18.3.1 react-router-dom@^6.30.6
 
 # Dev dependencies (one-liner)
-npm install -D typescript@^5.5.0 \
-  vite@^5.4.0 \
-  @vitejs/plugin-react@^4.3.0 \
-  @originjs/vite-plugin-federation@^2.8.4 \
-  @types/react@^18.3.0 \
-  @types/react-dom@^18.3.0 \
-  @types/node@^22.0.0 \
-  vitest@^2.0.0 \
-  @testing-library/react@^16.0.0 \
-  @testing-library/jest-dom@^6.4.0 \
-  @testing-library/user-event@^15.0.0 \
-  @playwright/test@^1.40.0 \
-  @vitest/coverage-v8@^2.0.0 \
-  @vitest/ui@^2.0.0 \
-  @storybook/react-vite@^8.0.0 \
-  @storybook/addon-essentials@^8.0.0 \
-  @storybook/addon-a11y@^8.0.0 \
-  @storybook/addon-interactions@^8.0.0 \
-  eslint@^9.0.0 \
-  @typescript-eslint/eslint-plugin@^7.18.0 \
-  @typescript-eslint/parser@^7.18.0 \
-  eslint-plugin-react@^7.37.0 \
-  eslint-plugin-react-hooks@^5.0.0 \
-  eslint-plugin-jsx-a11y@^6.9.0 \
-  eslint-plugin-import@^2.30.0 \
-  prettier@^3.3.0 \
-  husky@^9.0.0 \
-  lint-staged@^15.0.0
+npm install -D typescript@^5.9.3 \
+  vite@^6.4.3 \
+  @vitejs/plugin-react@^5.2.0 \
+  @originjs/vite-plugin-federation@^1.4.1 \
+  @types/react@^18.3.31 \
+  @types/react-dom@^18.3.7 \
+  @types/node@^24.13.3 \
+  vitest@^3.2.7 \
+  @vitest/coverage-v8@^3.2.7 \
+  @vitest/ui@^3.2.7 \
+  jsdom@^27.1.0 \
+  @testing-library/react@^16.3.3 \
+  @testing-library/jest-dom@^7.0.1 \
+  @testing-library/user-event@^14.6.6 \
+  @playwright/test@^1.62.1 \
+  storybook@^8.6.18 \
+  @storybook/react-vite@^8.6.18 \
+  @storybook/test@^8.6.18 \
+  @storybook/addon-essentials@^8.6.18 \
+  @storybook/addon-a11y@^8.6.18 \
+  @storybook/addon-interactions@^8.6.18 \
+  eslint@^9.39.5 \
+  @typescript-eslint/eslint-plugin@^8.68.0 \
+  @typescript-eslint/parser@^8.68.0 \
+  eslint-plugin-react@^7.37.5 \
+  eslint-plugin-react-hooks@^7.1.1 \
+  eslint-plugin-jsx-a11y@^6.10.2 \
+  eslint-plugin-import@^2.32.0 \
+  eslint-import-resolver-typescript@^4.4.5 \
+  prettier@^3.9.6 \
+  husky@^9.1.7 \
+  lint-staged@^17.4.1
 
 # Or use the package.json template
 cp templates/package.json package.json
@@ -302,7 +306,9 @@ cp templates/eslint.config.js eslint.config.js
 # Storybook config
 mkdir -p .storybook
 cp templates/.storybook/main.ts .storybook/main.ts
-cp templates/.storybook/preview.tsx .storybook/preview.tsx
+cp templates/.storybook/preview.ts .storybook/preview.ts
+cp templates/vitest.config.ts vitest.config.ts
+cp templates/playwright.config.ts playwright.config.ts
 ```
 
 ### 3.5 Optional: Add Agent Skills
@@ -350,13 +356,15 @@ EOF
 
 ```bash
 # Initialize Husky
-npx husky install
+npx husky init
 
-# Create pre-commit hook
-npx husky add .husky/pre-commit "npm run lint-staged && npm run type-check"
-
-# Create commit-msg hook for conventional commits
-npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
+# Replace the default pre-commit hook with your project checks
+cat > .husky/pre-commit << 'EOF'
+#!/usr/bin/env sh
+npm run lint-staged
+npm run type-check
+EOF
+chmod +x .husky/pre-commit
 ```
 
 ### 6. Create Basic Project Structure
@@ -449,6 +457,7 @@ EOF
 # Add secrets in GitHub repo settings:
 # - CHROMATIC_PROJECT_TOKEN (optional)
 # - CODECOV_TOKEN (optional)
+# - SNYK_TOKEN (optional)
 
 # GitLab: Already configured in .gitlab-ci.yml
 # Add variables in GitLab CI/CD settings:
@@ -458,11 +467,11 @@ EOF
 ### 9. Install Additional Tools
 
 ```bash
-# Optional: Storybook
-npm install -D @storybook/addon-docs @storybook/addon-controls
+# Optional: Chromatic visual regression publishing
+npm install -D @chromatic-com/storybook
 
 # Optional: Testing utilities
-npm install -D jest-dom @testing-library/jest-dom
+npm install -D @testing-library/jest-dom
 
 # Optional: Commit linting
 npm install -D @commitlint/cli @commitlint/config-conventional
@@ -708,7 +717,7 @@ npm install
 
 ```bash
 # Check TypeScript version
-npx tsc --version  # Should be 5.5+
+npx tsc --version  # Should be 5.9+
 
 # Delete type cache
 rm -rf node_modules/.cache

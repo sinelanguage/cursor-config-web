@@ -2,9 +2,9 @@
 
 ## Core Framework & Runtime
 
-### React 18+
+### React 18.3+
 
-**Version**: `^18.3.0`
+**Version**: `^18.3.1`
 
 Features used:
 
@@ -16,20 +16,20 @@ Features used:
 **Installation**:
 
 ```bash
-npm install react@^18.3.0 react-dom@^18.3.0
+npm install react@^18.3.1 react-dom@^18.3.1 react-router-dom@^6.30.6
 ```
 
-### TypeScript 5.5+
+### TypeScript 5.9+
 
-**Version**: `^5.5.0`
+**Version**: `^5.9.3`
 
 Configuration: Strict mode enabled
 
 ```json
 {
   "compilerOptions": {
-    "target": "ES2022",
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "target": "ES2023",
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "strict": true,
     "jsx": "react-jsx"
@@ -47,9 +47,9 @@ Configuration: Strict mode enabled
 
 ## Build Tools
 
-### Vite 5+
+### Vite 6+
 
-**Version**: `^5.0.0`
+**Version**: `^6.4.3`
 
 Highlights:
 
@@ -68,7 +68,7 @@ npm install -D @originjs/vite-plugin-federation
 ### Module Federation
 
 **Plugin**: `@originjs/vite-plugin-federation`
-**Version**: `^2.8.4`
+**Version**: `^1.4.1`
 
 Supports both v1 and v2 patterns:
 
@@ -80,7 +80,7 @@ Supports both v1 and v2 patterns:
 
 ### npm Workspaces
 
-**Version**: npm 9+
+**Version**: npm 10+
 
 Workspace structure:
 
@@ -122,7 +122,7 @@ Scripts:
 
 #### Storybook
 
-- Version: `^8.0.0`
+- Version: `^8.6.18`
 - Component documentation
 - Visual testing
 - Interaction testing
@@ -243,7 +243,7 @@ Components are copied to `src/components/ui/` by default (configurable in `compo
 
 ### Vitest
 
-**Version**: `^2.0.0`
+**Version**: `^3.2.7`
 
 Fast unit testing:
 
@@ -261,13 +261,13 @@ Fast unit testing:
 
 **Versions**:
 
-- `@testing-library/react`: `^16.0.0`
-- `@testing-library/jest-dom`: `^6.0.0`
-- `@testing-library/user-event`: `^15.0.0`
+- `@testing-library/react`: `^16.3.3`
+- `@testing-library/jest-dom`: `^7.0.1`
+- `@testing-library/user-event`: `^14.6.6`
 
 ### Playwright
 
-**Version**: `^1.40.0`
+**Version**: `^1.62.1`
 
 E2E testing:
 
@@ -449,7 +449,7 @@ Built-in React state for:
 
 ### Zustand (Optional)
 
-**Version**: `^5.0.0`
+**Version**: `^6.4.3`
 
 Simple state management:
 
@@ -459,7 +459,7 @@ npm install zustand
 
 ### React Query (Optional)
 
-**Version**: `^5.0.0`
+**Version**: `^6.4.3`
 
 Data fetching:
 
@@ -491,7 +491,7 @@ Recommended:
 
 ### Node Version
 
-**Node**: `20.x` or `22.x`
+**Node**: `22.12+` or `24.x`
 **npm**: `9.x` or `10.x`
 
 Use `.nvmrc`:
@@ -536,7 +536,7 @@ ES2022 features:
 
 ### vite-bundle-visualizer
 
-**Version**: `^0.12.0`
+**Version**: `^1.2.1`
 
 Usage:
 
@@ -601,7 +601,7 @@ npm install -D typedoc
 ### Git Hooks
 
 **Husky**
-Version: `^9.0.0`
+Version: `^9.1.7`
 
 ```bash
 npm install -D husky
@@ -609,7 +609,7 @@ npx husky init
 ```
 
 **lint-staged**
-Version: `^15.0.0`
+Version: `^17.4.1`
 
 ```json
 {
@@ -628,8 +628,9 @@ Version: `^15.0.0`
 
 ```bash
 npm install \
-  react@^18.3.0 \
-  react-dom@^18.3.0
+  react@^18.3.1 \
+  react-dom@^18.3.1 \
+  react-router-dom@^6.30.6
 ```
 
 ### UI Component Dependencies
@@ -665,15 +666,15 @@ npm install @radix-ui/react-dropdown-menu \
 
 ```bash
 npm install -D \
-  typescript@^5.5.0 \
-  vite@^5.0.0 \
-  @vitejs/plugin-react \
-  @types/react \
-  @types/react-dom \
-  @types/node \
-  vitest@^2.0.0 \
-  @testing-library/react@^16.0.0 \
-  @playwright/test@^1.40.0
+  typescript@^5.9.3 \
+  vite@^6.4.3 \
+  @vitejs/plugin-react@^5.2.0 \
+  @types/react@^18.3.31 \
+  @types/react-dom@^18.3.7 \
+  @types/node@^24.13.3 \
+  vitest@^3.2.7 \
+  @testing-library/react@^16.3.3 \
+  @playwright/test@^1.62.1
 ```
 
 ## Environment Setup
@@ -711,7 +712,7 @@ npm run dev
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "npm run type-check && vite build",
     "preview": "vite preview",
     "test": "vitest",
     "test:ui": "vitest --ui",
@@ -725,28 +726,29 @@ npm run dev
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "react": "^18.3.0",
-    "react-dom": "^18.3.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.30.6",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "tailwind-merge": "^2.2.0"
   },
   "devDependencies": {
-    "@playwright/test": "^1.40.0",
-    "@storybook/react": "^8.0.0",
-    "@testing-library/react": "^16.0.0",
-    "@types/node": "^22.0.0",
-    "@types/react": "^18.3.0",
-    "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.0.0",
-    "@vitest/coverage-v8": "^2.0.0",
-    "@vitest/ui": "^2.0.0",
-    "eslint": "^9.0.0",
-    "husky": "^9.0.0",
-    "prettier": "^3.3.0",
-    "typescript": "^5.5.0",
-    "vite": "^5.0.0",
-    "vitest": "^2.0.0"
+    "@playwright/test": "^1.62.1",
+    "storybook": "^8.6.18",
+    "@testing-library/react": "^16.3.3",
+    "@types/node": "^24.13.3",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^5.2.0",
+    "@vitest/coverage-v8": "^3.2.7",
+    "@vitest/ui": "^3.2.7",
+    "eslint": "^9.39.5",
+    "husky": "^9.1.7",
+    "prettier": "^3.9.6",
+    "typescript": "^5.9.3",
+    "vite": "^6.4.3",
+    "vitest": "^3.2.7"
   }
 }
 ```

@@ -511,7 +511,10 @@ git tag -a v1.2.0 -m "Release v1.2.0
 3. **Set up environment variables**
 
    ```bash
-   cp .env.example .env.development
+   cat > .env.development << 'EOF'
+   VITE_API_URL=http://localhost:3000/api
+   VITE_ENABLE_DEV_TOOLS=true
+   EOF
    # Edit .env.development with your values
    ```
 

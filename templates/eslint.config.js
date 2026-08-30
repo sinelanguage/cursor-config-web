@@ -19,20 +19,29 @@ export default [
       'storybook-static/**',
       'build/**',
       '.vite/**',
+      '.storybook/**',
+      'eslint.config.js',
+      'vite.config.ts',
+      'playwright.config.ts',
+      'vitest.config.ts',
+      'playwright-report/**',
+      'test-results/**',
     ],
   },
   
   // Global config
   {
-    files: ['**/*.{js,jsx,ts,tsx}'],
+    files: ['**/*.{ts,tsx}'],
     languageOptions: {
       parser: typescriptParser,
       ecmaVersion: 2022,
       sourceType: 'module',
       globals: {
         console: 'readonly',
+        document: 'readonly',
         process: 'readonly',
         Buffer: 'readonly',
+        window: 'readonly',
       },
       parserOptions: {
         ecmaFeatures: {
@@ -42,7 +51,7 @@ export default [
       },
     },
     plugins: {
-      typescript,
+      '@typescript-eslint': typescript,
       react,
       'react-hooks': reactHooks,
       'jsx-a11y': jsxA11y,
@@ -180,4 +189,3 @@ export default [
     },
   },
 ]
-

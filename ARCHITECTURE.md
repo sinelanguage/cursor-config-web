@@ -65,12 +65,12 @@ graph TB
 shared: {
   'react': {
     singleton: true,
-    requiredVersion: '^18.3.0',
+    requiredVersion: '^18.3.1',
     eager: false,
   },
   'react-dom': {
     singleton: true,
-    requiredVersion: '^18.3.0',
+    requiredVersion: '^18.3.1',
     eager: false,
   },
 }
@@ -377,14 +377,14 @@ graph LR
 
 ### Core Dependencies
 
-- React 18.3+
-- React DOM 18.3+
+- React 18.3.1+
+- React DOM 18.3.1+
 - React Router 6+
-- TypeScript 5.5+
+- TypeScript 5.9+
 
 ### Build Tools
 
-- Vite 5+
+- Vite 6+
 - Module Federation
 - ESLint
 - Prettier

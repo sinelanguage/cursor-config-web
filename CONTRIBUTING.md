@@ -6,8 +6,8 @@ Thank you for your interest in contributing! This document provides guidelines a
 
 ### Prerequisites
 
-- Node.js 20.x or higher
-- npm 9.x or higher
+- Node.js 22.12+ or 24.x
+- npm 10.x or higher
 - Git
 
 ### Getting Started
@@ -28,7 +28,10 @@ Thank you for your interest in contributing! This document provides guidelines a
 3. **Set up environment variables**
 
    ```bash
-   cp .env.example .env.development
+   cat > .env.development << 'EOF'
+   VITE_API_URL=http://localhost:3000/api
+   VITE_ENABLE_DEV_TOOLS=true
+   EOF
    # Edit .env.development with your local configuration
    ```
 
