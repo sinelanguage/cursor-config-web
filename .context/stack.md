@@ -492,7 +492,7 @@ Recommended:
 ### Node Version
 
 **Node**: `22.12+` or `24.x`
-**npm**: `9.x` or `10.x`
+**npm**: `10.x`
 
 Use `.nvmrc`:
 
