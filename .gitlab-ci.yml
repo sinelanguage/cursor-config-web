@@ -1,5 +1,4 @@
 stages:
-  - install
   - lint
   - type-check
   - test
@@ -19,15 +18,6 @@ image: node:${NODE_VERSION}
 
 before_script:
   - npm ci --cache .npm/cache --prefer-offline
-
-install_dependencies:
-  stage: install
-  script:
-    - npm ci --cache .npm/cache --prefer-offline
-  cache:
-    key: ${CI_COMMIT_REF_SLUG}
-    paths:
-      - .npm/cache/
 
 lint:
   stage: lint

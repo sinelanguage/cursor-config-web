@@ -269,6 +269,7 @@ npm install -D typescript@^5.9.3 \
   @testing-library/user-event@^14.6.6 \
   @playwright/test@^1.62.1 \
   storybook@^8.6.18 \
+  @storybook/react@^8.6.18 \
   @storybook/react-vite@^8.6.18 \
   @storybook/test@^8.6.18 \
   @storybook/addon-essentials@^8.6.18 \

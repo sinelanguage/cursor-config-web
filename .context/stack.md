@@ -736,6 +736,7 @@ npm run dev
   "devDependencies": {
     "@playwright/test": "^1.62.1",
     "storybook": "^8.6.18",
+    "@storybook/react": "^8.6.18",
     "@testing-library/react": "^16.3.3",
     "@types/node": "^24.13.3",
     "@types/react": "^18.3.31",

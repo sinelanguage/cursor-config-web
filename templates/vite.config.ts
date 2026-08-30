@@ -53,7 +53,7 @@ export default defineConfig({
     },
   },
   build: {
-    target: 'es2022',
+    target: 'es2023',
     minify: 'esbuild', // Fast minification
     sourcemap: true, // Source maps for debugging
     reportCompressedSize: true,
