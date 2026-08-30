@@ -22,6 +22,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add usage guidance for skills and greenfield/existing setups
 - Add end-to-end usage flow for applying this repo
 - Rename repo to `cursor-config-web` and update README stack section
+- Refresh CI templates and docs to target Node.js 22
+- Update Playwright template guidance to `^1.58.2`
+- Clarify that Snyk support is optional and align docs with the shipped npm-audit defaults
+- Document scratch-project validation flow for this template-first repository
+- Fix the package template's ESLint stack so `npm install` resolves cleanly with ESLint 9
+- Correct invalid published template dependency versions discovered during scratch-install validation
 
 ### Deprecated
 

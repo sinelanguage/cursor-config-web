@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
 
       - name: Install dependencies
@@ -33,4 +33,3 @@ jobs:
       - name: Check for accessibility warnings
         if: failure()
         run: echo "Accessibility violations detected. Please fix them before merging."
-

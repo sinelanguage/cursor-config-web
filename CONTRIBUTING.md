@@ -6,8 +6,8 @@ Thank you for your interest in contributing! This document provides guidelines a
 
 ### Prerequisites
 
-- Node.js 20.x or higher
-- npm 9.x or higher
+- Node.js 22.x or higher
+- npm 10.x or higher
 - Git
 
 ### Getting Started
@@ -19,29 +19,35 @@ Thank you for your interest in contributing! This document provides guidelines a
    cd <project-name>
    ```
 
-2. **Install dependencies**
+2. **Apply the templates in a scratch app or target project**
+
+   This repository ships configuration, documentation, and CI templates rather than a root application. To validate template changes locally:
 
    ```bash
+   mkdir ../cursor-config-web-scratch
+   cd ../cursor-config-web-scratch
+   cp /path/to/cursor-config-web/templates/package.json package.json
    npm install
    ```
 
-3. **Set up environment variables**
+3. **Set up environment variables in that app if needed**
+
+   Define the variables your project uses, for example:
 
    ```bash
-   cp .env.example .env.development
-   # Edit .env.development with your local configuration
+   cat <<'EOF' > .env.development
+   VITE_API_URL=http://localhost:3000/api
+   VITE_ENABLE_DEV_TOOLS=true
+   EOF
    ```
 
-4. **Start development server**
+4. **Run the relevant validation commands**
 
    ```bash
-   npm run dev
-   ```
-
-5. **Run tests** (in another terminal)
-
-   ```bash
-   npm run test
+   npm run lint
+   npm run type-check
+   npm run test:ci
+   npm run build
    ```
 
 ## Development Workflow
